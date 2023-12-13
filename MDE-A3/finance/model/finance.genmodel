@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/finance/src" modelPluginID="finance" modelName="Finance"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="17.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>finance.ecore</foreignModel>
+  <genPackages prefix="Finance" disposableProviderFactory="true" ecorePackage="finance.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="finance.ecore#//Currency">
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//Currency/Euro"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//Currency/YEN"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//Currency/GBP"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//Currency/USD3"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="finance.ecore#//FinancialEntityType">
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//FinancialEntityType/BANK"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//FinancialEntityType/INVESTFIRM"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//FinancialEntityType/CREDITUNION"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//FinancialEntityType/INSURANCE"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//FinancialEntityType/COOPERATIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//FinancialEntityType/OTHERS"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="finance.ecore#//PartyType">
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//PartyType/INDIVIDUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="finance.ecore#//PartyType/ORGANIZATION"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="finance.ecore#//EEmail"/>
+    <genClasses ecoreClass="finance.ecore#//Account">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Account/account_id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Account/balance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Account/currency"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//Account/accounttype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference finance.ecore#//Account/partyassociatedwithaccount"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference finance.ecore#//Account/InstitutionWithAccount"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//AccountType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//AccountType/typename"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//AccountList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//AccountList/accountlist"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//AccountList/litsname"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//FinancialEntity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialEntity/fin_entityID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialEntity/fin_entity_name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialEntity/financialentitytype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialEntity/address"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialEntity/contact"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialEntity/email"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference finance.ecore#//FinancialEntity/regulatoryentity"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//FinancialEntityList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//FinancialEntityList/financialentitylist"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialEntityList/entitylistname"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//FinancialProduct">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialProduct/product_id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialProduct/product_name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference finance.ecore#//FinancialProduct/servicesofferedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//FinancialProductType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialProductType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//FinancialProductTypeList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//FinancialProductTypeList/FPtypeList"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//FinancialProductTypeList/typelistname"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//Party">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Party/party_ID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Party/partyname"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Party/partytype"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//PartyList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//PartyList/parties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//PartyList/partyListname"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//RegulatoryEntity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//RegulatoryEntity/regulatoryID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//RegulatoryEntity/regulatoryname"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//RegulatoryEntitytype">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//RegulatoryEntitytype/type"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//RegulatoryEntityList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//RegulatoryEntityList/regulatoryentities"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//Regulation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Regulation/regulation_ID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Regulation/RegulationName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Regulation/RegulationDescription"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//SpecificAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//SpecificAttribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//SpecificAttribute/value"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//Transction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Transction/transctionID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Transction/amount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//Transction/date"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference finance.ecore#//Transction/transctiontype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference finance.ecore#//Transction/transctionmode"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//TransctionType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//TransctionType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//TransctionMode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//TransctionMode/mode"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//TransctionList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//TransctionList/transctionlist"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//TransctionList/listname"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//TransctionTypeList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//TransctionTypeList/typelist"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//TransctionTypeList/typelistname"/>
+    </genClasses>
+    <genClasses ecoreClass="finance.ecore#//TransctionModeList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference finance.ecore#//TransctionModeList/modelist"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute finance.ecore#//TransctionModeList/modelistname"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="finance" nsURI="http://www.example.org/financialsystem" nsPrefix="fs">
+  <eClassifiers xsi:type="ecore:EClass" name="Account">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="account_id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="balance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currency" eType="#//Currency"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accounttype" lowerBound="1"
+        eType="#//AccountType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="partyassociatedwithaccount"
+        lowerBound="1" eType="#//Party"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="InstitutionWithAccount"
+        lowerBound="1" eType="#//FinancialEntity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Currency">
+    <eLiterals name="Euro"/>
+    <eLiterals name="YEN" value="1"/>
+    <eLiterals name="GBP" value="2"/>
+    <eLiterals name="USD3" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AccountType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AccountList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accountlist" upperBound="-1"
+        eType="#//Account" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="litsname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="EEmail" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FinancialEntity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fin_entityID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fin_entity_name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="financialentitytype" eType="#//FinancialEntityType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="address" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contact" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" eType="#//EEmail"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regulatoryentity" lowerBound="1"
+        eType="#//RegulatoryEntity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinancialEntityList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="financialentitylist" upperBound="-1"
+        eType="#//FinancialEntity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entitylistname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="FinancialEntityType">
+    <eLiterals name="BANK"/>
+    <eLiterals name="INVESTFIRM" value="1"/>
+    <eLiterals name="CREDITUNION" value="2"/>
+    <eLiterals name="INSURANCE" value="3"/>
+    <eLiterals name="COOPERATIVE" value="4"/>
+    <eLiterals name="OTHERS" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinancialProduct">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="product_id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="product_name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="servicesofferedBy" lowerBound="1"
+        eType="#//FinancialEntity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinancialProductType" eSuperTypes="#//FinancialProduct">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FinancialProductTypeList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="FPtypeList" upperBound="-1"
+        eType="#//FinancialProductType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typelistname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Party">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="party_ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partyname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partytype" eType="#//PartyType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PartyType">
+    <eLiterals name="INDIVIDUAL"/>
+    <eLiterals name="ORGANIZATION" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PartyList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parties" upperBound="-1"
+        eType="#//Party" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="partyListname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegulatoryEntity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regulatoryID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regulatoryname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegulatoryEntitytype" eSuperTypes="#//RegulatoryEntity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegulatoryEntityList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="regulatoryentities" upperBound="-1"
+        eType="#//RegulatoryEntity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Regulation" eSuperTypes="#//RegulatoryEntity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="regulation_ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegulationName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="RegulationDescription"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecificAttribute" eSuperTypes="#//Account #//FinancialEntity #//FinancialProduct #//Transction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transctionID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="amount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transctiontype" lowerBound="1"
+        eType="#//TransctionType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transctionmode" lowerBound="1"
+        eType="#//TransctionMode"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransctionType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransctionMode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransctionList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transctionlist" upperBound="-1"
+        eType="#//Transction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="listname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransctionTypeList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typelist" upperBound="-1"
+        eType="#//TransctionType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typelistname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransctionModeList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelist" upperBound="-1"
+        eType="#//TransctionMode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelistname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

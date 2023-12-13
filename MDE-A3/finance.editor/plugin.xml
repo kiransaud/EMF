@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated finance -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="finance.presentation.FinanceModelWizardID"
+            name="%_UI_FinanceModelWizard_label"
+            class="finance.presentation.FinanceModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/FinanceModelFile.gif">
+         <description>%_UI_FinanceModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated finance -->
+      <editor
+            id="finance.presentation.FinanceEditorID"
+            name="%_UI_FinanceEditor_label"
+            icon="icons/full/obj16/FinanceModelFile.gif"
+            extensions="finance"
+            class="finance.presentation.FinanceEditor"
+            contributorClass="finance.presentation.FinanceActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

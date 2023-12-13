@@ -1,0 +1,140 @@
+@namespace(uri="http://www.example.org/financialsystem", prefix="fs")
+package finance;
+
+class Account {
+	attr int account_id;
+	attr float balance;
+	attr Currency currency;
+	val AccountType[1] accounttype;
+	ref Party[1] partyassociatedwithaccount;
+	ref FinancialEntity[1] InstitutionWithAccount;
+}
+
+enum Currency {
+	Euro = 0;
+	YEN = 1;
+	GBP = 2;
+	USD3 = 3;
+}
+
+class AccountType {
+	attr String typename;
+}
+
+class AccountList {
+	val Account[*] accountlist;
+	attr String litsname;
+}
+
+datatype EEmail : java.lang.String;
+
+class FinancialEntity {
+	attr int fin_entityID;
+	attr String fin_entity_name;
+	attr FinancialEntityType financialentitytype;
+	attr String address;
+	attr int contact;
+	attr EEmail email;
+	ref RegulatoryEntity[1] regulatoryentity;
+}
+
+class FinancialEntityList {
+	val FinancialEntity[*] financialentitylist;
+	attr String entitylistname;
+}
+
+enum FinancialEntityType {
+	BANK = 0;
+	INVESTFIRM = 1;
+	CREDITUNION = 2;
+	INSURANCE = 3;
+	COOPERATIVE = 4;
+	OTHERS = 5;
+}
+
+class FinancialProduct {
+	attr int product_id;
+	attr String product_name;
+	ref FinancialEntity[1] servicesofferedBy;
+}
+
+class FinancialProductType extends FinancialProduct {
+	attr String type;
+}
+
+class FinancialProductTypeList {
+	val FinancialProductType[*] FPtypeList;
+	attr String typelistname;
+}
+
+class Party {
+	attr int party_ID;
+	attr String partyname;
+	attr PartyType partytype;
+}
+
+enum PartyType {
+	INDIVIDUAL = 0;
+	ORGANIZATION = 1;
+}
+
+class PartyList {
+	val Party[*] parties;
+	attr String partyListname;
+}
+
+class RegulatoryEntity {
+	attr int regulatoryID;
+	attr String regulatoryname;
+}
+
+class RegulatoryEntitytype extends RegulatoryEntity {
+	attr String type;
+}
+
+class RegulatoryEntityList {
+	val RegulatoryEntity[*] regulatoryentities;
+}
+
+class Regulation extends RegulatoryEntity {
+	attr int regulation_ID;
+	attr String RegulationName;
+	attr String RegulationDescription;
+}
+
+class SpecificAttribute extends Account, FinancialEntity, FinancialProduct, Transction {
+	attr String name;
+	attr String value;
+}
+
+class Transction {
+	attr int transctionID;
+	attr float amount;
+	attr EDate date;
+	ref TransctionType[1] transctiontype;
+	ref TransctionMode[1] transctionmode;
+}
+
+class TransctionType {
+	attr String type;
+}
+
+class TransctionMode {
+	attr String mode;
+}
+
+class TransctionList {
+	val Transction[*] transctionlist;
+	attr String listname;
+}
+
+class TransctionTypeList {
+	val TransctionType[*] typelist;
+	attr String typelistname;
+}
+
+class TransctionModeList {
+	val TransctionMode[*] modelist;
+	attr String modelistname;
+}
+
